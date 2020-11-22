@@ -25,5 +25,29 @@ module.exports = {
                 reject(JSON.parse(err));
             })
         })
-    }
+    },
+
+    searchImage(name){
+        return new Promise((resolve, reject) => {
+            const httpOptions = {
+                host: host,
+                path: `/images/search?term=${name}&limit=10`,
+                port: port,
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            };
+
+            Utils.httpRequest(httpOptions)
+            .then((data) => {
+                console.log(data); 
+                resolve(JSON.parse(data));
+            })
+            .catch((err) => {
+                console.log(err.status);
+                reject(JSON.parse(err));
+            })
+        })
+    },
 }
