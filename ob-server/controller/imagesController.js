@@ -8,6 +8,7 @@ module.exports = {
             return res.json({images});
 
         }catch(err) {
+            console.log(err);
             return res.json({"error": err});
         }
     },
@@ -17,11 +18,12 @@ module.exports = {
             const images = await Docker.getAllImages();
             let simpleImages = [];
             images.forEach(el => {
-                simpleImages.push(DockerParse.reduceImageData(el.Id ,el.RepoTags[0]));
+                simpleImages.push(DockerParse.reduceImageData(el.Id ,el.RepoTags));
             });
             //return res.json("images");
             return res.json({simpleImages});
         }catch(err) {
+            console.log(err);
             return res.json({"error": err});
         }
     },
@@ -32,6 +34,7 @@ module.exports = {
             const images = await Docker.searchImage(name);
             return res.json(images);
         }catch (err) {
+            console.log(err);
             return res.json({"error": err});
         }
     }
