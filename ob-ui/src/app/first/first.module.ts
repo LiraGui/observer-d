@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FirstComponent } from './first.component'; 
+import { FirstService } from './first.service';
 
 @NgModule({
   declarations: [
@@ -11,6 +12,9 @@ import { FirstComponent } from './first.component';
   ],
   exports: [
     FirstComponent
+  ],
+  providers: [
+    FirstService
   ]
 })
 export class FirstModule { }
