@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { ImageService } from './image.service';
 
 @Component({
@@ -7,12 +8,25 @@ import { ImageService } from './image.service';
   styleUrls: ['./image.component.sass']
 })
 export class ImageComponent implements OnInit {
-
-  constructor(public image: ImageService) { }
-
-  ngOnInit(): void {
-    let resImages: any;
-    resImages = this.image.getAllImages();
+  resImages: any;
+  pullImageName: any;
+  constructor(public image: ImageService) { 
+    this.image.getAllImages().subscribe((data: any[]) => {
+      this.resImages = data;
+      console.log(this.resImages);
+    });
   }
 
+  searchImage() {
+    console.log(this.pullImageName);
+    this.image.getImageFromHub(this.pullImageName).then((data: any[]) => {
+      console.log(data);
+    }).catch((err: any[]) => {
+      console.log("ERROR ==> ",err);
+      
+    })
+  }
+
+  ngOnInit(): void {
+  }
 }

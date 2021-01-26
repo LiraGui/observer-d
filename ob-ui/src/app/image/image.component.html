@@ -1,1 +1,23 @@
-<p>image works!</p>
+
+<h3>Your images</h3>
+<div class="card">
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+          <th>Id</th>
+          <th>Repo Tag</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let image of resImages.simpleImages">
+                <td>{{image.repoTag}}</td>
+                <td>{{image.id}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<!-- 
+<h3>Pull Images</h3>
+<div class="card">
+    <input type="text" (keyup)="searchImage()" [(ngModel)]="pullImageName">
+</div> -->
