@@ -31,7 +31,7 @@ module.exports = {
         return new Promise((resolve, reject) => {
             const httpOptions = {
                 host: host,
-                path: `/images/search?term=${name}&limit=10`,
+                path: `/v1.24/images/search?term=${name}&limit=5`,
                 port: port,
                 method: 'GET',
                 headers: {
@@ -41,7 +41,6 @@ module.exports = {
 
             Utils.httpRequest(httpOptions)
             .then((data) => {
-                console.log(data); 
                 resolve(JSON.parse(data));
             })
             .catch((err) => {
@@ -50,4 +49,28 @@ module.exports = {
             })
         })
     },
+
+    pullImage(name, tag){
+        return new Promise((resolve, reject) => {
+            const httpOptions = {
+                host: host,
+                path: `/v1.24/images/hub.docker.com/${name}/push?tag=${tag}`,
+                port: port,
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            };
+            console.log(httpOptions);
+            Utils.httpRequest(httpOptions)
+            .then((data) => {
+                resolve(JSON.parse(data));
+            })
+            .catch((err) => {
+                console.log(err.status);
+                reject(JSON.parse(err));
+            })
+        })
+
+    }
 }
