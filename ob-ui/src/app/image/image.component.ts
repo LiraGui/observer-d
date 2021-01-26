@@ -11,10 +11,7 @@ export class ImageComponent implements OnInit {
   resImages: any;
   pullImageName: any;
   constructor(public image: ImageService) { 
-    this.image.getAllImages().subscribe((data: any[]) => {
-      this.resImages = data;
-      console.log(this.resImages);
-    });
+    this.getImages();
   }
 
   searchImage() {
@@ -25,6 +22,12 @@ export class ImageComponent implements OnInit {
       console.log("ERROR ==> ",err);
       
     })
+  }
+
+  getImages(){
+    this.image.getAllImages().subscribe((data: any[]) => {
+      this.resImages = data;
+    });
   }
 
   ngOnInit(): void {
