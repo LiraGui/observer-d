@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ImageService } from './image.service';
+import { PullImageComponent } from './pull-image/pull-image.component';
 
 @Component({
   selector: 'image-comp',
@@ -10,19 +11,11 @@ import { ImageService } from './image.service';
 export class ImageComponent implements OnInit {
   resImages: any;
   pullImageName: any;
+  @ViewChild(PullImageComponent) pullImageComponent!: PullImageComponent;
   constructor(public image: ImageService) { 
     this.getImages();
   }
-
-  searchImage() {
-    console.log(this.pullImageName);
-    this.image.getImageFromHub(this.pullImageName).then((data: any[]) => {
-      console.log(data);
-    }).catch((err: any[]) => {
-      console.log("ERROR ==> ",err);
-      
-    })
-  }
+  searchImage() { this.pullImageComponent.searchImage(); }
 
   getImages(){
     this.image.getAllImages().subscribe((data: any[]) => {
@@ -30,6 +23,18 @@ export class ImageComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
+  cleanSearchImages(){
+    this.pullImageName = '';
+    this.pullImageComponent.clean();
+    this.getImages();
+  }
+
+  emitAlert(event: any){
+    if(event){
+      alert("Clean completed");
+    }
+  }
+
+  ngOnInit(): void { 
   }
 }

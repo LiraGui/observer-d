@@ -14,13 +14,4 @@ export class ImageService {
     images = this.http.get('http://localhost:4000/api/images/simple');
     return images;
   }
-
-  public getImageFromHub(name: string) {
-    let images: any;
-    if(name.length % 3 == 0){
-      console.log("Entrei");
-      images = this.http.get(`http://localhost:2375/v1.24/images/search?term=${name}`).toPromise();
-    }
-    return images;
-  }
 }

@@ -1,0 +1,20 @@
+<div class="card">
+    <h2>Search images</h2>
+    <!-- <input type="text" (keyup)="searchImage()" [(ngModel)]="pullImageName"> -->
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let image of searchedImages">
+                <td>{{image.name}}</td>
+                <td>{{image.description}}</td>
+                <td><button class="btn">PULL IMG</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,4 +1,5 @@
-
+<button class="btn" (click)="cleanSearchImages()">REALOAD AND CLEAN</button>
+<input type="text" (keyup)="searchImage()" [(ngModel)]="pullImageName">
 <div class="card">
     <h2>Your images</h2>
     <button (click)="getImages()" class="btn">REALOAD</button>
@@ -17,8 +18,4 @@
         </tbody>
     </table>
 </div>
-<!-- 
-<h3>Pull Images</h3>
-<div class="card">
-    <input type="text" (keyup)="searchImage()" [(ngModel)]="pullImageName">
-</div> -->
+<pull-image [imageName]="pullImageName" (cleaned)="emitAlert($event)"></pull-image>
