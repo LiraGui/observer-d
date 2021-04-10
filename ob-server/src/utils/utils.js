@@ -10,13 +10,13 @@ function httpRequest(httpOptions, body = '') {
   
         response.on('end', () => {
           try {
-            let retorno;
+            let response;
             if (data instanceof Object) {
-              retorno = JSON.parse(data);
+              response = JSON.parse(data);
             } else {
-              retorno = data;
+              response = data;
             }
-            resolve(retorno)
+            resolve(response)
           } catch (err) {
             console.log('ERR ====>  ', err);
             reject(err);

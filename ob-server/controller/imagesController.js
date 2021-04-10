@@ -39,12 +39,13 @@ module.exports = {
         }
     },
 
-    async pullImages(req, res, next) {
+    async pullImagesFromHub(req, res, next) {
         const name = req.query.name;
         const tag = req.query.tag;
         try{
-            const images = await Docker.pullImage(name, tag);
-            return res.json(images);
+            const response = await Docker.pullImageFromHub(name, tag);
+            console.log(response);
+            // return res.json(images);
         }catch (err) {
             console.log(err);
             return res.json({"error": err});

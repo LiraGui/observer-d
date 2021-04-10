@@ -4,7 +4,7 @@ const host = process.env.DOCKER_IP;
 const port = process.env.DOCKER_PORT;
 
 module.exports = {
-    getAllImages(){
+    async getAllImages(){
         return new Promise((resolve, reject) => {
             const httpOptions = {
                 host: host,
@@ -27,7 +27,7 @@ module.exports = {
         })
     },
 
-    searchImage(name){
+    async searchImage(name){
         return new Promise((resolve, reject) => {
             const httpOptions = {
                 host: host,
@@ -50,11 +50,11 @@ module.exports = {
         })
     },
 
-    pullImage(name, tag){
+    async pullImageFromHub(name, tag){
         return new Promise((resolve, reject) => {
             const httpOptions = {
                 host: host,
-                path: `/v1.24/images/hub.docker.com/${name}/push?tag=${tag}`,
+                path: `/v1.24/images/create?fromImage=${name}=${tag}`,
                 port: port,
                 method: 'POST',
                 headers: {
