@@ -1,6 +1,6 @@
 const Docker = require('../src/docker/index.js');
 const DockerParse = require('../src/docker/dockerParser.js');
-const { Logger } = require('logger');
+const { Logger } = require('logger').createLogger();
 
 module.exports = {
     async getAllImages(req, res, next){

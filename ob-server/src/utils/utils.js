@@ -3,19 +3,12 @@ function httpRequest(httpOptions, body = '') {
     return new Promise(function (resolve, reject) {
       const request = http.request(httpOptions, function (response) {
         let data = '';
-  
-        response.on('data', function (cbresponse) {
-          data += cbresponse;
-        });
-  
+        response.on('data', function (cbresponse) { data += cbresponse; });
         response.on('end', () => {
           try {
             let response;
-            if (data instanceof Object) {
-              response = JSON.parse(data);
-            } else {
-              response = data;
-            }
+            if (data instanceof Object) response = JSON.parse(data);
+            else response = data;
             resolve(response)
           } catch (err) {
             console.log('ERR ====>  ', err);
@@ -23,10 +16,7 @@ function httpRequest(httpOptions, body = '') {
           }
         });
       });
-      if (body instanceof Object) {
-        body = JSON.stringify(body);
-      }
-  
+      if (body instanceof Object) body = JSON.stringify(body);
       request.write(body);
       request.end();
   });
