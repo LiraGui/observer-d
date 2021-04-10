@@ -6,20 +6,9 @@ const port = process.env.DOCKER_PORT;
 module.exports = {
     async getAllImages(){
         return new Promise((resolve, reject) => {
-            const httpOptions = {
-                host: host,
-                path: `/images/json`,
-                port: port,
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-            };
-
+            const httpOptions = Utils.httpOptions(host, '/images/json', port, 'GET');
             Utils.httpRequest(httpOptions)
-            .then((data) => { 
-                resolve(JSON.parse(data));
-            })
+            .then((data) => { resolve(JSON.parse(data)); })
             .catch((err) => {
                 console.log(err.status);
                 reject(JSON.parse(err));
@@ -29,20 +18,9 @@ module.exports = {
 
     async searchImage(name){
         return new Promise((resolve, reject) => {
-            const httpOptions = {
-                host: host,
-                path: `/v1.24/images/search?term=${name}&limit=5`,
-                port: port,
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-            };
-
+            const httpOptions = Utils.httpOptions(host, '/v1.24/images/search?term=${name}&limit=5', port, 'GET');
             Utils.httpRequest(httpOptions)
-            .then((data) => {
-                resolve(JSON.parse(data));
-            })
+            .then((data) => { resolve(JSON.parse(data)); })
             .catch((err) => {
                 console.log(err.status);
                 reject(JSON.parse(err));
@@ -52,20 +30,10 @@ module.exports = {
 
     async pullImageFromHub(name, tag){
         return new Promise((resolve, reject) => {
-            const httpOptions = {
-                host: host,
-                path: `/v1.24/images/create?fromImage=${name}=${tag}`,
-                port: port,
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-            };
-            console.log(httpOptions);
+            const httpOptions = Utils.httpOptions(host, '/v1.24/images/create?fromImage=${name}=${tag}', port, 'POST');
             Utils.httpRequest(httpOptions)
             .then((data) => {
-                resolve(JSON.parse(data));
-            })
+                resolve(JSON.parse(data)); })
             .catch((err) => {
                 console.log(err.status);
                 reject(JSON.parse(err));

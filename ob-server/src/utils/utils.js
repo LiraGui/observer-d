@@ -32,6 +32,20 @@ function httpRequest(httpOptions, body = '') {
   });
 }
 
+function httpOptions(host, path, port, method, header = []){
+  let httpOptionsObj = {
+    host: host,
+    path: path,
+    port: port,
+    method: method,
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  }
+  return httpOptionsObj;
+}
+
 module.exports = {
-  httpRequest
+  httpRequest,
+  httpOptions
 };
