@@ -1,21 +1,24 @@
-<button class="btn" (click)="cleanSearchImages()">REALOAD AND CLEAN</button>
-<input type="text" (keyup)="searchImage()" [(ngModel)]="pullImageName">
+<pull-image></pull-image>
 <div class="card">
-    <h2>Your images</h2>
-    <button (click)="getImages()" class="btn">REALOAD</button>
-    <table class="table table-bordered">
-        <thead>
-        <tr>
-          <th>Id</th>
-          <th>Repo Tag</th>
-        </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let image of resImages.simpleImages">
-                <td>{{image.repoTag}}</td>
-                <td>{{image.id}}</td>
-            </tr>
-        </tbody>
-    </table>
+  <div class="card-header">
+    <h5>Your images</h5>
+  </div>
+  <div class="form-group">
+    <input type="text" class="form-control search-images" placeholder="Search..." [(ngModel)]="filterTerm">
+  </div>
+  <button (click)="getImages()" class="btn btn-dark">Reload</button>
+  <table class="table table-striped">
+      <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Repo Tag</th>
+      </tr>
+      </thead>
+      <tbody>
+          <tr scope="row" *ngFor="let image of resImages.simpleImages | filter:filterTerm">
+              <td>{{image.repoTag}}</td>
+              <td>{{image.id}}</td>
+          </tr>
+      </tbody>
+  </table>
 </div>
-<pull-image [imageName]="pullImageName" (cleaned)="emitAlert($event)"></pull-image>

@@ -7,4 +7,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'ob-ui';
+  imageViewer: boolean = false;
+  imagePageRedirect(){ this.imageViewer = !this.imageViewer; }
 }

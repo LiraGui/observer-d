@@ -8,26 +8,26 @@ import { PullImageService } from './pull-image.service';
 })
 export class PullImageComponent implements OnInit {
   searchedImages: any;
-  @Input() imageName: any;
+  pullImageName: any;
+  @Input()
   @Output() cleaned = new EventEmitter();
   constructor(public pullImage: PullImageService) { }
 
-  clean(){
-    this.imageName = '';
+  clear(){
     this.searchedImages = '';
+    this.pullImageName = '';
     this.searchImage();
-    this.cleaned.emit(true);
+    // this.cleaned.emit(true);
   }
 
   searchImage() {
-    this.pullImage.getImageFromHub(this.imageName).then((data: any[]) => {
+    this.pullImage.getImageFromHub(this.pullImageName)
+    .then((data: any[]) => {
       this.searchedImages = data;
     }).catch((err: any[]) => {
       console.log("ERROR ==> ",err);
     })
   }
 
-  ngOnInit(): void { 
-    console.log(this.imageName);
-  }
+  ngOnInit(): void {}
 }

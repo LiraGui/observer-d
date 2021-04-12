@@ -1,20 +1,28 @@
 <div class="card">
-    <h2>Search images</h2>
-    <!-- <input type="text" (keyup)="searchImage()" [(ngModel)]="pullImageName"> -->
-    <table class="table table-bordered">
+  <div class="card-header">
+    <h5>Search Images (Docker Hub)</h5>
+  </div>
+  <input type="text" class="form-control search-images" (keyup)="searchImage()" [(ngModel)]="pullImageName" placeholder="Search...">
+  <button class="btn btn-dark clear-btn" (click)="clear()">Clear</button>
+  <div *ngIf="pullImageName">
+    <table class="table table-striped">
         <thead>
         <tr>
-          <th>Name</th>
-          <th>Description</th>
-          <th>Action</th>
+          <th scope="col">Name</th>
+          <th scope="col">Description</th>
+          <th scope="col">Action</th>
         </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let image of searchedImages">
+            <tr scope="row" *ngFor="let image of searchedImages">
                 <td>{{image.name}}</td>
                 <td>{{image.description}}</td>
-                <td><button class="btn">PULL IMG</button></td>
+                <td><button class="btn btn-success">Pull</button></td>
             </tr>
         </tbody>
     </table>
+  </div>
+  <div *ngIf="!pullImageName" class="loading-spin">
+    <img src="../../../assets/images/loading-spinner.svg" alt="Loading...">
+  </div>
 </div>
