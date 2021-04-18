@@ -17,8 +17,9 @@ export class PullImageComponent implements OnInit {
     this.searchedImages = '';
     this.pullImageName = '';
     this.searchImage();
-    // this.cleaned.emit(true);
   }
+
+  pullImageFromHub() { }
 
   searchImage() {
     this.pullImage.getImageFromHub(this.pullImageName)

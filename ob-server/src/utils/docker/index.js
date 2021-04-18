@@ -1,5 +1,5 @@
 require('dotenv').config();
-const Utils = require('../utils/utils.js');
+const Utils = require('../utils.js');
 const host = process.env.DOCKER_IP;
 const port = process.env.DOCKER_PORT;
 const Logger = require('logger').createLogger();

@@ -1,5 +1,5 @@
-const Docker = require('../src/docker/index.js');
-const DockerParse = require('../src/docker/dockerParser.js');
+const Docker = require('../../temp/docker/index.js');
+const DockerParse = require('../src/utils/docker/dockerParser.js.js.js.js.js');
 const { Logger } = require('logger').createLogger();
 
 module.exports = {

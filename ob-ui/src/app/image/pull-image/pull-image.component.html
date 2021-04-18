@@ -17,7 +17,7 @@
             <tr scope="row" *ngFor="let image of searchedImages">
                 <td>{{image.name}}</td>
                 <td>{{image.description}}</td>
-                <td><button class="btn btn-success">Pull</button></td>
+                <td><button class="btn btn-success" (click)="pullImageFromHub()">Pull</button></td>
             </tr>
         </tbody>
     </table>
